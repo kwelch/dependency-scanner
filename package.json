@@ -2,14 +2,16 @@
   "name": "dependency-scanner",
   "version": "1.0.0",
   "description": "Outputs dependancies from package.json provided",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "files": [
+    "index.js"
+  ],
+  "bin": {
+    "dependency-scanner": "./index.js"
   },
   "keywords": [
     "node",
     "package",
-    "dependancies"
+    "dependencies"
   ],
   "author": "Kyle Welch",
   "license": "ISC",
