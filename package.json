@@ -1,6 +1,6 @@
 {
   "name": "dependency-scanner",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Outputs dependancies from package.json provided",
   "files": [
     "index.js"
