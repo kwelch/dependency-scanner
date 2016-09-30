@@ -17,5 +17,14 @@
     "chalk": "^1.1.3",
     "fs": "0.0.1-security",
     "path": "^0.12.7"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kwelch/dependency-scanner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kwelch/dependency-scanner/issues"
+  },
+  "homepage": "https://github.com/kwelch/dependency-scanner#readme"
 }
