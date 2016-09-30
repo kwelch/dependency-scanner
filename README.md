@@ -1,7 +1,19 @@
 # Dependency Scanner
 Reads `package.json` of directory it was called within and outputs dependencies.
 
-##Roadmap
-- [ ] Add to npm
-- [ ] Update docs
-- [ ] Allow args to be passed
+## Installation
+```
+npm install -g dependency-scanner
+```
+
+## Usage
+Once installed, navigate to a node project directory and run: 
+```
+# Outputs all dependency types in alpha order
+dependency-scanner
+
+# Or you can pipe it to your clipboard
+dependency-scanner | pbcopy
+```
+ 
+ 
