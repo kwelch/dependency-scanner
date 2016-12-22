@@ -18,16 +18,24 @@ var INCLUDE_FLAGS = Object.keys(flags).reduce(function (acc, curr) {
   return acc + flags[curr];
 }, 0);
 
-var packagePath = path.resolve('package.json');
-
-loadDependencies(packagePath);
-
 function logMessage(message) {
   // don't log not truthy values, or in silent
   if (!message || SILENT) {
     return;
   }
   console.log(message);
+}
+
+function displayDependencies(deps) {
+  deps.sort().forEach(function (item) {
+    console.log(item.name);
+  })
+}
+
+function appendDependencies(arr, deps, depType) {
+  return (arr || {}).concat(Object.keys(deps).map(function (key) {
+    return { name: key, version: deps[key], depType };
+  }));
 }
 
 function loadDependencies(path) {
@@ -38,34 +46,34 @@ function loadDependencies(path) {
 
       if (INCLUDE_FLAGS & flags.production && pkg.dependencies) {
         logMessage(VERBOSE && 'loading production dependencies');
-        deps = deps.concat(Object.keys(pkg.dependencies));
+        deps = appendDependencies(deps, pkg.dependencies, 'production');
       }
 
       if (INCLUDE_FLAGS & flags.dev && pkg.devDependencies) {
         logMessage(VERBOSE && 'loading dev dependencies');
-        deps = deps.concat(Object.keys(pkg.devDependencies));
+        deps = appendDependencies(deps, pkg.devDependencies, 'dev');
       }
 
       if (INCLUDE_FLAGS & flags.peer && pkg.peerDependencies) {
         logMessage(VERBOSE && 'loading peer dependencies');
-        deps = deps.concat(Object.keys(pkg.peerDependencies));
+        deps = appendDependencies(deps, pkg.peerDependencies, 'peer');
       }
 
       if (INCLUDE_FLAGS & flags.bundled) {
         if (pkg.bundledDependencies) {
           logMessage(VERBOSE && 'loading bundled dependencies');
-          deps = deps.concat(Object.keys(pkg.bundledDependencies));
+          deps = appendDependencies(deps, pkg.bundledDependencies, 'bundled');
         }
 
         if (pkg.bundleDependencies) {
           logMessage(VERBOSE && 'loading bundle dependencies');
-          deps = deps.concat(Object.keys(pkg.bundleDependencies));
+          deps = appendDependencies(deps, pkg.bundleDependencies, 'bundled');
         }
       }
 
       if (INCLUDE_FLAGS & flags.optional && pkg.optionalDependencies) {
         logMessage(VERBOSE && 'loading optional dependencies');
-        deps = deps.concat(Object.keys(pkg.optionalDependencies));
+        deps = appendDependencies(deps, pkg.optionalDependencies, 'optional');
       }
 
       displayDependencies(deps);
@@ -81,8 +89,5 @@ function loadDependencies(path) {
   });
 }
 
-function displayDependencies(deps) {
-  deps.sort().forEach(function (item) {
-    console.log(item);
-  })
-}
+var packagePath = path.resolve('package.json');
+loadDependencies(packagePath);
