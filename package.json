@@ -6,12 +6,17 @@
     "index.js"
   ],
   "bin": {
-    "dependency-scanner": "./index.js"
+    "dependency-scanner": "./index.js",
+    "deps-scan": "./index.js"
   },
   "keywords": [
     "node",
     "package",
-    "dependencies"
+    "dependencies",
+    "deps-scan",
+    "scan-deps",
+    "deps",
+    "scan"
   ],
   "author": "Kyle Welch",
   "license": "ISC",
